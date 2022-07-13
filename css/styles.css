@@ -51,5 +51,35 @@
 
 }
 
+/**Css de registro**/
+
+.header img{
+    width: 360px;
+} .header i{
+    position:absolute;
+    margin: 8px;
+}
+
+.text1{
+    width: 215px;
+    height: 60px;
+    background-color: #E6E6E6;
+    border-radius: 25px;
+    border-style: none;
+    font-weight: bolder;
+    padding-left: 15%;
+    margin-bottom: 25px;
+
+} .text1 #2{
+    padding-left: 80px;
+    color:aqua;
+}
+
+body{
+    margin:0%;
+}
+
+
+
 
 
