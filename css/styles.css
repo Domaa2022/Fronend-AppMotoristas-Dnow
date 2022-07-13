@@ -1,0 +1,55 @@
+.titulo{
+    background-color: #00234A;
+    color: white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 40vh;
+    margin-bottom: 0px;
+} .titulo h1{
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.datos{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 55vh;
+} .datos h1{
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+
+.contenido{
+    width:auto;
+    height: auto;
+
+}
+
+.btn{
+    color:white;
+    font-weight: 500;
+    background-color: #004FA8;
+    border-radius: 18px;
+    border-style: none;
+    width: 220px;
+    height: 60px;
+    font-weight: bolder;
+    font-size: large;
+} .text{
+    width: 220px;
+    height: 60px;
+    background-color: #E6E6E6;
+    border-radius: 25px;
+    border-style: none;
+    font-weight: bolder;
+    padding-left: 100px;
+
+}
+
+
+
