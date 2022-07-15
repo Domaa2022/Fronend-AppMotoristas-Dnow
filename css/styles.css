@@ -149,6 +149,36 @@ body{
     font-weight: bolder;
 }
 
+/*css detalles*/
+
+.detalles{
+    background-color: #E6E6E6;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 15px;
+    padding: 10px;
+} .detalles h1{
+    color:#00234A;
+} .cant{
+    display:grid;
+    grid-template-columns: 60% 40%;
+    margin-top: 0px;
+} .detalles h3{
+    margin-bottom: 0px;
+} .detalles2{
+    margin-bottom: 50px;
+} .btnord{
+    color:white;
+    font-weight: 500;
+    background-color: #004FA8;
+    border-radius: 18px;
+    border-style: none;
+    width: 220px;
+    height: 30px;
+    font-weight: bolder;
+    font-size: large;
+    margin-top: 40px;
+} 
 
 
 
