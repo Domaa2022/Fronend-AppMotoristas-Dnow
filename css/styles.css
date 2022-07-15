@@ -120,6 +120,35 @@ body{
     margin-top: 40px;
 }
 
+/*css ordenes*/
+
+.tit{
+    display:grid;
+    margin-left: 30px;
+    grid-template-columns: 5% 95%;
+    margin-top: 15px;
+    color:#00234A;
+} .tit h3{
+    margin-top: 0px;
+    margin-left: 0px;
+}   
+
+.text3{
+    margin-left: 30px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    width: 260px;
+    height: 40px;
+    background-color: #E6E6E6;
+    border-style: none;
+    color:#00234A;
+    font-weight: bolder;
+} #titl{
+    margin-left: 30px;
+    color:#00234A;
+    font-weight: bolder;
+}
+
 
 
 
