@@ -79,6 +79,47 @@ body{
     margin:0%;
 }
 
+/**css inicio**/
+
+.header1{
+    display:grid;
+    grid-template-columns: 10% 80% 10%;
+    background-color: #E6E6E6;
+} .header2{
+    display:grid;
+    grid-template-columns: 15% 85%;
+    background-color: #E6E6E6;
+
+} .header2 h4{
+    margin-top: 0px;
+} .header1 h2{
+    color:#00234A;
+    font-weight: bolder;
+}
+
+.text2{
+    border-color: #004FA8;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    width: 260px;
+    height: 40px;
+    background-color: #E6E6E6;
+    border-style: solid;
+    color:#00234A;
+    font-weight: bolder;
+} #t{
+    margin-left: 30px;
+    color:#00234A;
+} .men{
+    color:#00234A;
+} .us{
+    color:rgb(71, 69, 69);
+} #img{
+    max-width: 100%;
+    margin-top: 40px;
+}
+
 
 
 
