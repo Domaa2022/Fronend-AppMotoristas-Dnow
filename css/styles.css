@@ -254,3 +254,20 @@ body{
     margin-top: 40px;
 }
 
+.formulario_input:focus {
+    border: 3px solid   #004FA8;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.formularioGrupo-incorrecto .formulario_input:focus{
+    border: 3px solid #FF0000;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.formularioGrupo-correcto .formulario_input{
+    border: 3px solid #29ce00;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+

@@ -14,12 +14,32 @@
        <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a> 
        <center><img src="img/repartidor.jpeg" alt="" srcset=""></center> 
          <center><h1>Registro de motorista</h1></center>   
-       <center><input type="email" class="text1" name="" id="formularioRegistro" placeholder="Ingresa tu nombre">
-        <input type="password" class="text1" name="" id="formularioRegistro" placeholder="Ingresa tu contraseña">
-        <input type="email" class="text1" name="" id="formularioRegistro" placeholder="Ingrese su correo electronico">
-        <input type="text" class="text1" name="" id="formularioRegistro" placeholder="Ingrese su dirección">
-        <input type="text" class="text1"  id="formularioRegistro" placeholder="Ingrese su placa vehicular">
-        <button type="submit" class="btn">Enviar</button></center>  
+         <div id ="formulario">
+            <center>
+
+                <div class="formularioGrupo " id="grupoUsuario">
+                    <input type="text" class=" text1 formulario_input" name="usuarionuevo" id="usuarionuevo" placeholder="Ingresa un nombre de usuario">
+                </div>
+
+                <div class="formularioGrupo"id="grupoContraseña">
+                    <input type="password" class=" text1 formulario_input" name="contraseñanueva" id="contraseñaNuevo" placeholder="Ingresa una contraseña">
+                </div>
+
+                <div class="formularioGrupo" id="grupoCorreo">
+                    <input type="text" class=" text1 formulario_input" name="emailnuevo" id="email" placeholder="Ingresa un correo electronico">
+                </div>
+                
+                <div class="formularioGrupo" id="grupoCorreo">
+                    <input type="text" class="text1 formulario_input" name="matriculanueva" id="placa" placeholder="Ingresa tu placa">
+                </div>
+
+                <div class="formularioGrupo" id="grupoCorreo">
+                    <input type="text" class=" text1 formulario_input" name="direccionnueva" id="direccion" placeholder="Ingresa tu direccion">
+                </div>
+        
+            </center>
+         </div>
+       <center> <input type="submit" class="btn" value="Enviar"  onclick="EntrarApp(2)"></center>  
     </div>
 
     <script src="js/validarFormulario.js"></script>
