@@ -5,29 +5,41 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 40vh;
+    height: 300px;
     margin-bottom: 0px;
+    position: relative;
+    z-index: 3;
+
 } .titulo h1{
     font-weight: bolder;
     font-size: xx-large;
 }
 
 .datos{
+    margin-top: -20px;
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     height: 55vh;
+    position:relative;
+    border-radius: 20px;
+    z-index: 50;
+    background-color: aliceblue;
+
 } .datos h1{
     font-size: xx-large;
     font-weight: bolder;
-}
+} 
 
 
 .contenido{
     width:auto;
     height: auto;
+    border-radius: 20px;
 
+} .contenido h1{
+    margin-bottom: 0px;
 }
 
 .btn{
@@ -77,6 +89,7 @@
 
 body{
     margin:0%;
+    font-family: 'BentonSans Black';
 }
 
 /**css inicio**/
@@ -201,4 +214,43 @@ body{
     grid-template-columns: 50% 50%;
 }
 
+
+.textopopular{
+    display: flex;
+    
+    align-items: center;
+    margin-left: 10px;
+    font-family: 'BentonSans Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 131.02%;
+    color: #00234A;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 15px;
+} .imgRedondaPopular {
+    width:48px;
+    height:48px;
+    border-radius:150px;
+    margin-left: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.product{
+    display: grid;
+    grid-template-columns:15% 60% 25%;
+    margin-left: 15px;
+    border-color: black;
+    border-style:outset;
+    border-radius: 15px;
+    width: 320px;
+    color:#00234A;
+    border-width: 1px;
+    margin-top: 20px;
+}
+
+.precio{
+    margin-top: 40px;
+}
 
