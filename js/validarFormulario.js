@@ -87,17 +87,25 @@ formularioRegistro.addEventListener('submit', (e) =>{
       switch(a){
          case 1: 
          if(campoInicioSesion.UsuariorRegistrado && campoInicioSesion.ContraseñaRegistrada){
-            window.location.href ="inicio.html";
+			alert("Llena todos los campos");
          }else{
-            alert("Faltan campos por llenar");
+    
+			location.href ="inicio.html"
+
          }
          break;
          case 2:
          if(campoRegistro.Usuario && campoRegistro.Contraseña && campoRegistro.Correo && campoRegistro.Direccion && campoRegistro.Matricula){
-            window.location.href = "inicio.html";
+        
+			alert("Llena todos los campos");
          }else{
-            alert("Faltan campos por llenar");
+    
+		   location.href ="index.html";
          }
       }
       
+   }
+
+   function registro(){
+	 location.href="registro.html"
    }
