@@ -90,7 +90,7 @@ formularioRegistro.addEventListener('submit', (e) =>{
 			alert("Llena todos los campos");
          }else{
     
-			location.href ="inicio.html"
+			location.href ="html/inicio.html"
 
          }
          break;
@@ -100,12 +100,12 @@ formularioRegistro.addEventListener('submit', (e) =>{
 			alert("Llena todos los campos");
          }else{
     
-		   location.href ="index.html";
+		   location.href ="../index.html";
          }
       }
       
    }
 
    function registro(){
-	 location.href="registro.html"
+	 location.href="html/registro.html"
    }
