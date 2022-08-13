@@ -14,7 +14,7 @@ const expresiones = {
 }
 
 const campoRegistro ={
-	Usuario: false ,
+	motorista: false ,
 	Contraseña: false,
 	Correo: false,
    Direccion: false,
@@ -23,7 +23,7 @@ const campoRegistro ={
 }
 
 const campoInicioSesion ={
-	UsuariorRegistrado: false ,
+	MotoristaRegistrado: false ,
 	ContraseñaRegistrada: false,
 }
 
@@ -82,30 +82,31 @@ formularioRegistro.addEventListener('submit', (e) =>{
     });
 
 
-    function EntrarApp(a) {
+   function Ingresar() {
+	var motorista = document.getElementById('motorista').value
+	var contraseña = document.getElementById('contraseña').value
+	var usuarioIngresado = false
 
-      switch(a){
-         case 1: 
-         if(campoInicioSesion.UsuariorRegistrado && campoInicioSesion.ContraseñaRegistrada){
-			alert("Llena todos los campos");
-         }else{
-    
-			location.href ="html/inicio.html"
 
-         }
-         break;
-         case 2:
-         if(campoRegistro.Usuario && campoRegistro.Contraseña && campoRegistro.Correo && campoRegistro.Direccion && campoRegistro.Matricula){
-        
-			alert("Llena todos los campos");
-         }else{
-    
-		   location.href ="../index.html";
-         }
-      }
-      
-   }
+	axios({
+		url : 'http://localhost:3000/motoristas',
+		method : 'get',
+		ResponseType : 'json'
+	}).then(res => {
+		(res.data).forEach( e => {
+			if(e.correo == usuario && e.contraseña == contraseña){
+				window.location.href = './html/index.html'
+				sessionStorage.setItem('motorista', JSON.stringify(e))
+				usuarioIngresado = true
+			}
+		});
+		if(!usuarioIngresado){
+		document.getElementById('errorInicio').style.display = "block";
+		document.getElementById('errorInicio').innerHTML = '<p class="texto" style="color:red ;"> usuario o contraseña incorrecta  </p>' }
 
-   function registro(){
-	 location.href="html/registro.html"
-   }
+	}).catch(err => {
+		console.log(err)
+	})
+}
+
+
