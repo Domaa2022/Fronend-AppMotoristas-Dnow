@@ -45,4 +45,5 @@ function enviarUbicacion() {
 
 function cambiarEstado(){
     location.href="../html/ubicacion.html"
+    
 }

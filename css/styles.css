@@ -279,6 +279,10 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+.formularioGrupo{
+    margin: 0px;
+}
+
 #maps{
     margin-right: 10px;
     margin-left: 10px;

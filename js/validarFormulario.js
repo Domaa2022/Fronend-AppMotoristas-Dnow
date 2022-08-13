@@ -17,8 +17,8 @@ const campoRegistro ={
 	motorista: false ,
 	Contraseña: false,
 	Correo: false,
-   Direccion: false,
-   Matricula: false
+   direccion: false,
+   matricula: false
 
 }
 
@@ -30,19 +30,19 @@ const campoInicioSesion ={
 
 const validarFormularioRegistro = (e) => {
 	switch (e.target.name) {
-		case "usuarionuevo":
-			validarCampoRegistro(expresiones.usuario, e.target, "Usuario");
+		case "usuarioNuevo":
+			validarCampoRegistro(expresiones.motorista, e.target, "Usuario");
 			break;
-		case "contraseñanueva":
+		case "contraseñaNuevo":
 			validarCampoRegistro(expresiones.password, e.target, "Contraseña");
 			break;
-		case "emailnuevo":
+		case "email":
 			validarCampoRegistro(expresiones.correo, e.target, "Correo");
 			break;
-		case "direccionnueva":
-         validarCampoRegistro(expresiones.usuario, e.target, "Dirección")
+		case "direccion":
+         validarCampoRegistro(expresiones.direccion, e.target, "Dirección")
 		   break;
-      case "matriculanueva":
+      case "placa":
          validarCampoRegistro(expresiones.placa, e.target, "Matricula")
          default:
          break;
@@ -77,13 +77,11 @@ const validarCampo = (expresion, input, campo) => {
 }
 
 
-formularioRegistro.addEventListener('submit', (e) =>{
-    e.preventDefault();
-    });
 
 
-   function Ingresar() {
-	var motorista = document.getElementById('motorista').value
+
+function Ingresar() {
+	var usuario = document.getElementById('motorista').value
 	var contraseña = document.getElementById('contraseña').value
 	var usuarioIngresado = false
 
@@ -95,7 +93,7 @@ formularioRegistro.addEventListener('submit', (e) =>{
 	}).then(res => {
 		(res.data).forEach( e => {
 			if(e.correo == usuario && e.contraseña == contraseña){
-				window.location.href = './html/index.html'
+				window.location.href = 'html/inicio.html'
 				sessionStorage.setItem('motorista', JSON.stringify(e))
 				usuarioIngresado = true
 			}
@@ -103,10 +101,52 @@ formularioRegistro.addEventListener('submit', (e) =>{
 		if(!usuarioIngresado){
 		document.getElementById('errorInicio').style.display = "block";
 		document.getElementById('errorInicio').innerHTML = '<p class="texto" style="color:red ;"> usuario o contraseña incorrecta  </p>' }
-
 	}).catch(err => {
 		console.log(err)
 	})
+}
+
+function nuevoMotorista(){
+	var usuario = document.getElementById('usuarioNuevo').value
+	var contraseña = document.getElementById('contraseñaNuevo').value
+	var correo = document.getElementById('email').value
+	var matricula = document.getElementById('placa').value
+	
+
+	let motoristaNuevo =
+	{
+		nombre: usuario,
+		correo: correo,
+		contraseña: contraseña,
+		latitud: "",
+		longitud: "",
+		estado: "pendiente",
+		matricula: matricula,
+		historialOrden:[
+			{	ordenes: [],
+				pedidos: [],
+				metodoPago: []}
+		],
+		
+	
+	}
+
+	axios({
+		url : 'http://localhost:3000/motoristas',
+		method : 'post',
+		data : motoristaNuevo,
+		ResponseType : 'json'
+	}).then(res => {
+		console.log(res.data)
+		ingresarUsuario(usuario, contraseña)
+	}).catch(err => {
+		console.log(err)
+	}
+	)
+}
+
+function Registro(){
+	location.href = 'html/registro.html'
 }
 
 
