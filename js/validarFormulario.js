@@ -92,11 +92,18 @@ function Ingresar() {
 		ResponseType : 'json'
 	}).then(res => {
 		(res.data).forEach( e => {
-			if(e.correo == usuario && e.contraseña == contraseña){
-				window.location.href = 'html/inicio.html'
-				sessionStorage.setItem('motorista', JSON.stringify(e))
-				usuarioIngresado = true
+			if (e.estado == "pendiente"){
+				alert("Esperando aceptacion de usuario")
+			}else{
+				if(e.correo == usuario && e.contraseña == contraseña){
+					window.location.href = 'html/inicio.html'
+					sessionStorage.setItem('motorista', JSON.stringify(e))
+					usuarioIngresado = true
+				}
+
 			}
+
+			
 		});
 		if(!usuarioIngresado){
 		document.getElementById('errorInicio').style.display = "block";
@@ -138,7 +145,7 @@ function nuevoMotorista(){
 		ResponseType : 'json'
 	}).then(res => {
 		console.log(res.data)
-		ingresarUsuario(usuario, contraseña)
+		alert("Usuario creado esperando a ser aceptado");
 	}).catch(err => {
 		console.log(err)
 	}
