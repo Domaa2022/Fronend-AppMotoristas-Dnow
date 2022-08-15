@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://kit.fontawesome.com/d687448f8f.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="header">
+       <a href="../index.html"><i class="fa-solid fa-arrow-left"></i></a> 
+       <center><img src="../img/repartidor.jpeg" alt="" srcset=""></center> 
+         <center><h1>Registro de motorista</h1></center>   
+         <div id ="formulario">
+            <center>
+
+                <div class="formularioGrupo " id="grupoUsuario">
+                    <input type="text" class=" text1 formulario_input" name="usuarionuevo" id="usuarioNuevo" placeholder="Ingresa un nombre de usuario">
+                </div>
+
+                <div class="formularioGrupo"id="grupoContraseña">
+                    <input type="password" class=" text1 formulario_input" name="contraseñanueva" id="contraseñaNuevo" placeholder="Ingresa una contraseña">
+                </div>
+
+                <div class="formularioGrupo" id="grupoCorreo">
+                    <input type="text" class=" text1 formulario_input" name="emailnuevo" id="email" placeholder="Ingresa un correo electronico">
+                </div>
+                
+                <div class="formularioGrupo" id="grupoCorreo">
+                    <input type="text" class="text1 formulario_input" name="matriculanueva" id="placa" placeholder="Ingresa tu placa">
+                </div>
+
+                <div class="formularioGrupo" id="grupoCorreo">
+                    <input type="text" class=" text1 formulario_input" name="direccionnueva" id="direccion" placeholder="Ingresa tu direccion">
+                </div>
+        
+            </center>
+         </div>
+       <center> <input type="submit" class="btn" value="Enviar"  onclick="nuevoMotorista()"></center>  
+    </div>
+
+    <script src="../js/validarFormulario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles</title>
+    <script src="https://kit.fontawesome.com/d687448f8f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="header1">
+        <center><h3><i class="fa-solid fa-bars"></i></h3> </center>  
+           <center><h2 ><a onclick="display(4)">DNOW</a></h2></center>
+           <center><h3 class="us"><i class="fa-solid fa-user"></i></h3></center>
+       </div>
+       <div class ="tit">
+        <a href="inicio.html"><i class="fa-solid fa-arrow-left"></i></a> 
+        <h3>Detalles Orden  #40</h3>
+       </div>
+       <section class="detalles">
+        <h1>Pedido #1</h1>
+        <h3>Lugar entrega: Col.El hato</h3>
+        <div id="estado"></div>
+        <h3 >Estado: Tomada</h3>
+
+        <div id="cont">
+            <h3>Hamburguesa con queso,</h3>
+            <div class="cant">
+                <h3>cantidad:</h3>
+                <h3>$40</h3>
+            </div class="detalles2">
+            <h3>Hamburguesa con queso,</h3>
+            <div class="cant">
+                <h3>cantidad:</h3>
+                <h3>$40</h3>
+            </div>
+            <h3>Hamburguesa con queso,</h3>
+            <div class="cant">
+                <h3>cantidad:</h3>
+                <h3>$40</h3>
+            </div>
+        </div>
+            <center>  <input type="button" class="btnord"value="Cambiar estado" onclick="cambiarEstado()"></center>
+       </section>
+
+    <script src="../js/controladorUbicacion.js"></script>
+    <script src="../js/controladorInicio.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
