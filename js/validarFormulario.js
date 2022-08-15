@@ -95,7 +95,8 @@ function Ingresar() {
 			if (e.estado == "pendiente"){
 				alert("Esperando aceptacion de usuario")
 			}else{
-				if(e.correo == usuario && e.contraseña == contraseña){
+				alert("Estas registrado")
+				if(e.nombreMotorista == usuario && e.contraseña == contraseña){
 					window.location.href = 'html/inicio.html'
 					sessionStorage.setItem('motorista', JSON.stringify(e))
 					usuarioIngresado = true
@@ -122,18 +123,15 @@ function nuevoMotorista(){
 
 	let motoristaNuevo =
 	{
-		nombre: usuario,
+		nombreMotorista: usuario,
 		correo: correo,
 		contraseña: contraseña,
 		latitud: "",
 		longitud: "",
 		estado: "pendiente",
 		matricula: matricula,
-		historialOrden:[
-			{	ordenes: [],
-				pedidos: [],
-				metodoPago: []}
-		],
+		ordenesPendientes: [],
+		ordenesFinalizadas: [],
 		
 	
 	}

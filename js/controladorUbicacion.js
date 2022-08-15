@@ -1,8 +1,84 @@
 var motoristaActivo = JSON.parse(sessionStorage.getItem('motorista'));
-console.log(clienteActivo)
+console.log(motoristaActivo)
 
 
-function iniciarMapa(){
+
+var ordenSolicitad = JSON.parse(sessionStorage.getItem('orden'));
+console.log(ordenSolicitad)
+
+
+function OrdenTomada(){
+    var disponible = "ocupado"
+    var motoristaEntrega = {
+        recibe : motoristaActivo.nombreMotorista,
+        correo : motoristaActivo.correo,
+        correoMotorista: motoristaActivo.correo,
+        numeroPedido : ordenSolicitad.numeroPedido,
+        usuario : ordenSolicitad.usuario,
+        productos: ordenSolicitad.productos,
+    }
+    axios ( {
+        url :'http://localhost:3000/motoristas/' + motoristaActivo._id + '/' + disponible ,
+        method : 'put',
+        responseType : 'json',
+        data : motoristaEntrega
+
+    }).then( res => {
+        console.log(res.data)
+    }).catch( err => {
+        console.log(err)
+    })
+
+
+
+
+    
+    var orden = "Tomada"
+    var motoristaEntrega = {
+        recibe : motoristaActivo.nombreMotorista,
+        correo : motoristaActivo.correo,
+    }
+    axios ( {
+        url :'http://localhost:3000/usuarios',
+        method : 'get',
+        responseType : 'json'
+    })
+    .then( res => {
+        var x = res.data;
+        console.log(ordenSolicitad.numeroPedido)
+        
+        
+        for (let i = 0; i < x.length; i++) {
+            if(x[i].nombre == ordenSolicitad.usuario){
+                var LatitudCliente = x[i].latitud;
+                var LongitudCliente = x[i].longitud;
+                iniciarMapa(LatitudCliente,LongitudCliente)
+                axios({
+                    url: 'http://localhost:3000/usuarios/' + x[i]._id + "/" + ordenSolicitad.numeroPedido + "/" + orden, 
+                    method: 'put',
+                    responseType: 'json',
+                    data: motoristaEntrega
+                    
+                }).then(res => {
+                    console.log(res.data)
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+            
+        }
+        
+    })
+    .catch( err => {
+
+    })
+}
+
+OrdenTomada();
+
+function iniciarMapa(LatitudCliente,LongitudCliente){
+    var LatitudCliente = LatitudCliente;
+    var LongitudCliente = LongitudCliente;
     var latitud = 14.083540
     var longitud = -87.166966
 
@@ -11,11 +87,11 @@ function iniciarMapa(){
         lat : latitud
     }
 
-    generarMapa(coordenadas)
+    generarMapa(coordenadas,LatitudCliente,LongitudCliente)
 
 }
 
-function generarMapa(coordenadas) {
+function generarMapa(coordenadas,LatitudCliente,LongitudCliente) {
     var mapa = new google.maps.Map(document.getElementById('maps'),
     {
         zoom: 15,
@@ -24,14 +100,14 @@ function generarMapa(coordenadas) {
 
     marcador = new google.maps.Marker({
         map: mapa,
-        draggable: true, 
-        position: new google.maps.LatLng(coordenadas.lat, coordenadas.lng)
+        position: new google.maps.LatLng(LatitudCliente, LongitudCliente)
     });
 
-    marcador.addListener('dragend', function(event){
-        document.getElementById('latitud').value = this.getPosition().lat();
-        document.getElementById('longitud').value = this.getPosition().lng();
-    })
+    beachMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(14.073540, -87.166966),
+        map: mapa,
+        icon: '../MapsColor/darkgreen_MarkerA.png'
+    });
 }
 
 function enviarUbicacion() {
@@ -39,7 +115,6 @@ function enviarUbicacion() {
         latitud : document.getElementById("latitud").value,
         longitud: document.getElementById("longitud").value
     }
-
 
 }
 
@@ -49,86 +124,112 @@ function cambiarEstado(){
 }
 
 function enOrigen(){
+    var orden = "En Origen"
+    var motoristaEntrega = {
+        recibe : motoristaActivo.nombreMotorista,
+        correo : motoristaActivo.correo,
+    }
     axios ( {
-        url :'http://localhost:3000/motoristas/historialOrden/pedido',
+        url :'http://localhost:3000/usuarios',
         method : 'get',
         responseType : 'json'
-    } ).then( res => {
-
-        let x = res.data;
-        console.log(res.data)
-        document.getElementById('estado').innerHTML = '';
-
-        for ( let i = 0 ; i < x.length ; i++ ) {
-            
-            for(let j = 0 ; j < x[i].pedidos.length ; j++){
-                if(x[i].pedidos[j].estado == 'Pendiente'){
-                    document.getElementById('estado').innerHTML += `              
-                            <h3>Estado: ${x[i].pedidos[j].estado = 'en Origen'}</h3>
-                
-                    `  
-                }
+    })
+    .then( res => {
+        var x = res.data;
+        console.log(ordenSolicitad.numeroPedido)
+        
+        
+        for (let i = 0; i < x.length; i++) {
+            if(x[i].nombre == ordenSolicitad.usuario){
+                var LatitudCliente = x[i].latitud;
+                var LongitudCliente = x[i].longitud;
+                iniciarMapa(LatitudCliente,LongitudCliente)
+                axios({
+                    url: 'http://localhost:3000/usuarios/' + x[i]._id + "/" + ordenSolicitad.numeroPedido + "/" + orden, 
+                    method: 'put',
+                    responseType: 'json',
+                    data: motoristaEntrega
+                    
+                }).then(res => {
+                    console.log(res.data)
+                }).catch(err => {
+                    console.log(err)
+                })
             }
-        }   
+            
+        }
+        
+    })
+    .catch( err => {
 
-    }).catch( err => {
-        console.log(err);
     })
 }
 
 function enCamino(){
+    var orden = "En Camino"
+    var motoristaEntrega = {
+        recibe : motoristaActivo.nombreMotorista,
+        correo : motoristaActivo.correo,
+    }
     axios ( {
-        url :'http://localhost:3000/motoristas/historialOrden/pedido',
+        url :'http://localhost:3000/usuarios',
         method : 'get',
         responseType : 'json'
-    } ).then( res => {
-
-        let x = res.data;
-        console.log(res.data)
-        document.getElementById('estado').innerHTML = '';
-
-        for ( let i = 0 ; i < x.length ; i++ ) {
-            
-            for(let j = 0 ; j < x[i].pedidos.length ; j++){
-                if(x[i].pedidos[j].estado == 'en Origen'){
-                    document.getElementById('estado').innerHTML += `              
-                            <h3>Estado: ${x[i].pedidos[j].estado = 'en Camino'}</h3>
-                
-                    `  
-                }
+    })
+    .then( res => {
+        var x = res.data;
+        console.log(ordenSolicitad.numeroPedido)
+        
+        
+        for (let i = 0; i < x.length; i++) {
+            if(x[i].nombre == ordenSolicitad.usuario){
+                var LatitudCliente = x[i].latitud;
+                var LongitudCliente = x[i].longitud;
+                iniciarMapa(LatitudCliente,LongitudCliente)
+                axios({
+                    url: 'http://localhost:3000/usuarios/' + x[i]._id + "/" + ordenSolicitad.numeroPedido + "/" + orden, 
+                    method: 'put',
+                    responseType: 'json',
+                    data: motoristaEntrega
+                    
+                }).then(res => {
+                    console.log(res.data)
+                }).catch(err => {
+                    console.log(err)
+                })
             }
-        }   
+            
+        }
+        
+    })
+    .catch( err => {
 
-    }).catch( err => {
-        console.log(err);
     })
 }
 
 function enDestino(){
+    var disponible = "Disponible"
+    var motoristaEntrega = {
+        recibe : motoristaActivo.nombreMotorista,
+        correo : motoristaActivo.correo,
+        correoMotorista: motoristaActivo.correo,
+        numeroPedido : ordenSolicitad.numeroPedido,
+        usuario : ordenSolicitad.usuario,
+        productos: ordenSolicitad.productos,
+    }
     axios ( {
-        url :'http://localhost:3000/motoristas/historialOrden/pedido',
-        method : 'get',
-        responseType : 'json'
-    } ).then( res => {
+        url :'http://localhost:3000/motoristas/' + motoristaActivo._id + '/entregado/' + disponible ,
+        method : 'put',
+        responseType : 'json',
+        data : motoristaEntrega
 
-        let x = res.data;
-        console.log(res.data)
-        document.getElementById('estado').innerHTML = '';
-
-        for ( let i = 0 ; i < x.length ; i++ ) {
-            
-            for(let j = 0 ; j < x[i].pedidos.length ; j++){
-                if(x[i].pedidos[j].estado == 'en Camino'){
-                    document.getElementById('estado').innerHTML += `              
-                            <h3>Estado: ${x[i].pedidos[j].estado = 'en Destino'}</h3>
-                
-                    `  
-                }
-            }
-        }   
-
+    }).then( res => {
+        var funcion = true
+        if(funcion == true){
+            location.href="../html/inicio.html"
+        }
     }).catch( err => {
-        console.log(err);
+        console.log(err)
     })
 }
 

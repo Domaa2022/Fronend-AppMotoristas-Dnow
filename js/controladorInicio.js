@@ -15,11 +15,21 @@ function display(a){
         case 5:
             location.href ="../html/detallesOrden.html"
             break;
-         case 6:
-             location.href="../html/detalles.html"
+        case 6:
+            location.href="../html/detalles.html"
             break;
     }
 }
+
+motoristaActivo = JSON.parse(sessionStorage.getItem('motorista'))
+
+function inicio(){
+    document.getElementById('bienvenido').innerHTML =  `<h1>Bienvenido ${motoristaActivo.nombreMotorista}</h1>
+        `
+
+
+}
+inicio()
 
 function tomarOrden(){
    getElementbyid
