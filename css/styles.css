@@ -98,16 +98,25 @@ body{
     display:grid;
     grid-template-columns: 10% 80% 10%;
     background-color: #E6E6E6;
+
 } .header2{
     display:grid;
     grid-template-columns: 15% 85%;
-    background-color: #E6E6E6;
+    margin-top: 25px;
 
 } .header2 h4{
-    margin-top: 0px;
+    margin-bottom: 40px;
+
+}.header2 i{
+    margin-bottom: 40px;
 } .header1 h2{
     color:#00234A;
     font-weight: bolder;
+}
+.main{
+    margin-top: 30px;
+} #t{
+    margin-bottom: 30px;
 }
 
 .text2{
@@ -115,7 +124,7 @@ body{
     margin-left: 30px;
     margin-bottom: 20px;
     border-radius: 15px;
-    width: 260px;
+    width: 310px;
     height: 40px;
     background-color: #E6E6E6;
     border-style: solid;
@@ -197,21 +206,20 @@ body{
 
 /*css ubicacion*/
 
-.gps{
-    max-width: 100%;
-    width: 400px;
-} .btngps{
+
+.btngps{
     background-color: #004FA8;
     color:white;
     font-weight: bolder;
     border-style: none;
     border-radius: 15px;
     width: 130px;
-    margin-top: 40px;
+    margin-top: 30px;
     height: 30px;
 } #btngps{
     display:grid;
     grid-template-columns: 50% 50%;
+    margin-top: 0%;
 }
 
 
@@ -270,4 +278,19 @@ body{
     outline: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.formularioGrupo{
+    margin: 0px;
+}
+
+#maps{
+    margin-right: 10px;
+    margin-left: 10px;
+    height: 70vh;
+}
+
+.cerrarS{
+    margin-top: 60vh;
+}
+
 

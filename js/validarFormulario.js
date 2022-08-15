@@ -14,35 +14,35 @@ const expresiones = {
 }
 
 const campoRegistro ={
-	Usuario: false ,
+	motorista: false ,
 	Contraseña: false,
 	Correo: false,
-   Direccion: false,
-   Matricula: false
+   direccion: false,
+   matricula: false
 
 }
 
 const campoInicioSesion ={
-	UsuariorRegistrado: false ,
+	MotoristaRegistrado: false ,
 	ContraseñaRegistrada: false,
 }
 
 
 const validarFormularioRegistro = (e) => {
 	switch (e.target.name) {
-		case "usuarionuevo":
-			validarCampoRegistro(expresiones.usuario, e.target, "Usuario");
+		case "usuarioNuevo":
+			validarCampoRegistro(expresiones.motorista, e.target, "Usuario");
 			break;
-		case "contraseñanueva":
+		case "contraseñaNuevo":
 			validarCampoRegistro(expresiones.password, e.target, "Contraseña");
 			break;
-		case "emailnuevo":
+		case "email":
 			validarCampoRegistro(expresiones.correo, e.target, "Correo");
 			break;
-		case "direccionnueva":
-         validarCampoRegistro(expresiones.usuario, e.target, "Dirección")
+		case "direccion":
+         validarCampoRegistro(expresiones.direccion, e.target, "Dirección")
 		   break;
-      case "matriculanueva":
+      case "placa":
          validarCampoRegistro(expresiones.placa, e.target, "Matricula")
          default:
          break;
@@ -77,35 +77,83 @@ const validarCampo = (expresion, input, campo) => {
 }
 
 
-formularioRegistro.addEventListener('submit', (e) =>{
-    e.preventDefault();
-    });
 
 
-    function EntrarApp(a) {
 
-      switch(a){
-         case 1: 
-         if(campoInicioSesion.UsuariorRegistrado && campoInicioSesion.ContraseñaRegistrada){
-			alert("Llena todos los campos");
-         }else{
-    
-			location.href ="inicio.html"
+function Ingresar() {
+	var usuario = document.getElementById('motorista').value
+	var contraseña = document.getElementById('contraseña').value
+	var usuarioIngresado = false
 
-         }
-         break;
-         case 2:
-         if(campoRegistro.Usuario && campoRegistro.Contraseña && campoRegistro.Correo && campoRegistro.Direccion && campoRegistro.Matricula){
-        
-			alert("Llena todos los campos");
-         }else{
-    
-		   location.href ="index.html";
-         }
-      }
-      
-   }
 
-   function registro(){
-	 location.href="registro.html"
-   }
+	axios({
+		url : 'http://localhost:3000/motoristas',
+		method : 'get',
+		ResponseType : 'json'
+	}).then(res => {
+		(res.data).forEach( e => {
+			if (e.estado == "pendiente"){
+				alert("Esperando aceptacion de usuario")
+			}else{
+				if(e.correo == usuario && e.contraseña == contraseña){
+					window.location.href = 'html/inicio.html'
+					sessionStorage.setItem('motorista', JSON.stringify(e))
+					usuarioIngresado = true
+				}
+
+			}
+
+			
+		});
+		if(!usuarioIngresado){
+		document.getElementById('errorInicio').style.display = "block";
+		document.getElementById('errorInicio').innerHTML = '<p class="texto" style="color:red ;"> usuario o contraseña incorrecta  </p>' }
+	}).catch(err => {
+		console.log(err)
+	})
+}
+
+function nuevoMotorista(){
+	var usuario = document.getElementById('usuarioNuevo').value
+	var contraseña = document.getElementById('contraseñaNuevo').value
+	var correo = document.getElementById('email').value
+	var matricula = document.getElementById('placa').value
+	
+
+	let motoristaNuevo =
+	{
+		nombre: usuario,
+		correo: correo,
+		contraseña: contraseña,
+		latitud: "",
+		longitud: "",
+		estado: "pendiente",
+		matricula: matricula,
+		historialOrden:[
+			{	ordenes: [],
+				pedidos: [],
+				metodoPago: []}
+		],
+		
+	
+	}
+
+	axios({
+		url : 'http://localhost:3000/motoristas',
+		method : 'post',
+		data : motoristaNuevo,
+		ResponseType : 'json'
+	}).then(res => {
+		console.log(res.data)
+		alert("Usuario creado esperando a ser aceptado");
+	}).catch(err => {
+		console.log(err)
+	}
+	)
+}
+
+function Registro(){
+	location.href = 'html/registro.html'
+}
+
+

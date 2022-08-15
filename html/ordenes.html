@@ -6,26 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ordenes</title>
     <script src="https://kit.fontawesome.com/d687448f8f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="header1">
-        <center><h3><i class="fa-solid fa-bars"></i></h3> </center>  
-           <center><h2>DNOW</h2></center>
+        <center><h3><i  class="fa-solid fa-bars"></i></h3> </center>  
+           <center><h2 onclick="display(4)">DNOW</h2></center>
            <center><h3 class="us"><i class="fa-solid fa-user"></i></h3></center>
        </div>
        <div class ="tit">
-        <i class="fa-solid fa-arrow-left"></i>
+        <i onclick="display(4)" class="fa-solid fa-arrow-left"></i>
         <h3>Ordenes entregadas</h3>
        </div>
 
-       <input type="button" class="text3" value="Orden #66">
-       <input type="button" class="text3" value="Orden #54">
-       <input type="button" class="text3" value="Orden #94">
-       <input type="button" class="text3" value="Orden #44">
+       <input href ="detallesOrden.html" type="button" class="text3" value="Orden #1">
+       <input type="button" class="text3" value="Orden #2">
+      
 
        <h3 id="titl">Ordenes pendientes</h3>
 
        <input type="button" class="text3" value="Orden #84">
+
+       <script src="../js/controladorInicio.js"></script>
 </body>
 </html>

@@ -17,23 +17,24 @@
         <div class="datos">
             <h1>Inicia Sesión</h1>
         <div class="formularioLogin">
-            <div class="formularioGrupo " id="grupoUsuario">
-                <input type="text" class=" text1 formulario_input" name="usuarionuevo" id="usuarionuevo" placeholder="Ingresa un nombre de usuario">
-            </div>
+          <center> <div class="formularioGrupo " id="grupoUsuario">
+                <input type="text" class=" text1 formulario_input" name="usuarionuevo" id="motorista" placeholder="Ingresa un nombre de usuario">
+            </div></center> 
 
-            <div class="formularioGrupo"id="grupoContraseña">
-                <input type="password" class=" text1 formulario_input" name="contraseñanueva" id="contraseñaNuevo" placeholder="Ingresa una contraseña">
+           <center> <div class="formularioGrupo"id="grupoContraseña">
+                <input type="password" class=" text1 formulario_input" name="contraseñanueva" id="contraseña" placeholder="Ingresa una contraseña">
             </div>
-
+        </center>
         </div>
            
 
-             <input type="submit" class="btn" value="Iniciar Sesión" onclick="EntrarApp(1)">
+             <input type="submit" class="btn" value="Iniciar Sesión" onclick="Ingresar()">
              ¿Quieres trabajar con nosotros?
-            <input type="submit" class="btn"value="¡Registrate!" onclick="registro()" >
+            <input type="submit" class="btn"value="¡Registrate!" onclick="Registro()" >
         </div>
     </section>
 
     <script src="js/validarFormulario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>
