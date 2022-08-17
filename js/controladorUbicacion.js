@@ -1,80 +1,18 @@
 var motoristaActivo = JSON.parse(sessionStorage.getItem('motorista'));
 console.log(motoristaActivo)
 
-
-
-var ordenSolicitad = JSON.parse(sessionStorage.getItem('orden'));
-console.log(ordenSolicitad)
-
-
-function OrdenTomada(){
-    var disponible = "ocupado"
-    var motoristaEntrega = {
-        recibe : motoristaActivo.nombreMotorista,
-        correo : motoristaActivo.correo,
-        correoMotorista: motoristaActivo.correo,
-        numeroPedido : ordenSolicitad.numeroPedido,
-        usuario : ordenSolicitad.usuario,
-        productos: ordenSolicitad.productos,
-    }
-    axios ( {
-        url :'http://localhost:3000/motoristas/' + motoristaActivo._id + '/' + disponible ,
-        method : 'put',
-        responseType : 'json',
-        data : motoristaEntrega
-
-    }).then( res => {
-        console.log(res.data)
-    }).catch( err => {
-        console.log(err)
-    })
-
-
-
-
-    
-    var orden = "Tomada"
-    var motoristaEntrega = {
-        recibe : motoristaActivo.nombreMotorista,
-        correo : motoristaActivo.correo,
-    }
-    axios ( {
-        url :'http://localhost:3000/usuarios',
-        method : 'get',
-        responseType : 'json'
-    })
-    .then( res => {
-        var x = res.data;
-        console.log(ordenSolicitad.numeroPedido)
-        
-        
-        for (let i = 0; i < x.length; i++) {
-            if(x[i].nombre == ordenSolicitad.usuario){
-                var LatitudCliente = x[i].latitud;
-                var LongitudCliente = x[i].longitud;
-                iniciarMapa(LatitudCliente,LongitudCliente)
-                axios({
-                    url: 'http://localhost:3000/usuarios/' + x[i]._id + "/" + ordenSolicitad.numeroPedido + "/" + orden, 
-                    method: 'put',
-                    responseType: 'json',
-                    data: motoristaEntrega
-                    
-                }).then(res => {
-                    console.log(res.data)
-                }).catch(err => {
-                    console.log(err)
-                })
-            }
-            
-        }
-        
-    })
-    .catch( err => {
-
-    })
+if(motoristaActivo.ordenesPendientes.length > 0){
+    var ordenSolicitad = motoristaActivo.ordenesPendientes[0]
+}else{
+    var ordenSolicitad = JSON.parse(sessionStorage.getItem('orden'));
+    console.log(ordenSolicitad)
 }
 
-OrdenTomada();
+
+
+
+
+
 
 function iniciarMapa(LatitudCliente,LongitudCliente){
     var LatitudCliente = LatitudCliente;
@@ -208,7 +146,7 @@ function enCamino(){
 }
 
 function enDestino(){
-    var disponible = "Disponible"
+    var disponible = "disponible"
     var motoristaEntrega = {
         recibe : motoristaActivo.nombreMotorista,
         correo : motoristaActivo.correo,

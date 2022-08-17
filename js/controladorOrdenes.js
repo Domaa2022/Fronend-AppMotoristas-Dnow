@@ -1,6 +1,27 @@
 
 var motoristaActivo = JSON.parse(sessionStorage.getItem('motorista'));
 
+function inicio(){
+    axios({
+        url : 'http://localhost:3000/motoristas/' + motoristaActivo._id,
+        method : 'get',
+        ResponseType : 'json'
+    }).then( res => {
+        if(res.data.ordenesPendientes.length > 0){
+            alert("Tienes ordenes pendientes")
+        }else{
+            generarOrdenesDisponibles();
+        }
+
+    }).catch( err => {
+        console.log(err)
+    })
+
+}
+
+inicio();
+
+
 function generarOrdenesDisponibles(){
     axios({
             url : 'http://localhost:3000/usuarios' ,
@@ -28,7 +49,6 @@ function generarOrdenesDisponibles(){
         })
     }
     
-    generarOrdenesDisponibles();
 
     function verOrden(i,j){
         axios({
@@ -43,15 +63,6 @@ function generarOrdenesDisponibles(){
         })
         
     }
-
-    axios({
-        url : 'http://localhost:3000/motoristas',
-        method : 'get',
-        data : ordenes,
-        ResponseType : 'json'
-    }).then(res => {
-        console.log(res.data)
-    });
 
 
     

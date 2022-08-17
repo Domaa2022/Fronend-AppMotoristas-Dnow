@@ -26,8 +26,6 @@ motoristaActivo = JSON.parse(sessionStorage.getItem('motorista'))
 function inicio(){
     document.getElementById('bienvenido').innerHTML =  `<h1>Bienvenido ${motoristaActivo.nombreMotorista}</h1>
         `
-
-
 }
 inicio()
 

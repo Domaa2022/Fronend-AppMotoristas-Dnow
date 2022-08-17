@@ -70,3 +70,75 @@ function generarDetalle (){
 }
 
 generarDetalle();
+
+
+function OrdenTomada(){
+    var disponible = "ocupado"
+    var motoristaEntrega = {
+        recibe : motoristaActivo.nombreMotorista,
+        correo : motoristaActivo.correo,
+        correoMotorista: motoristaActivo.correo,
+        numeroPedido : ordenSolicitad.numeroPedido,
+        usuario : ordenSolicitad.usuario,
+        productos: ordenSolicitad.productos,
+        isv: ordenSolicitad.ISV,
+        total: ordenSolicitad.precioTotal,
+    }
+    axios ( {
+        url :'http://localhost:3000/motoristas/' + motoristaActivo._id + '/' + disponible ,
+        method : 'put',
+        responseType : 'json',
+        data : motoristaEntrega
+
+    }).then( res => {
+        console.log(res.data)
+    }).catch( err => {
+        console.log(err)
+    })
+
+
+
+
+    
+    var orden = "Tomada"
+    var motoristaEntrega = {
+        recibe : motoristaActivo.nombreMotorista,
+        correo : motoristaActivo.correo,
+    }
+    axios ( {
+        url :'http://localhost:3000/usuarios',
+        method : 'get',
+        responseType : 'json'
+    })
+    .then( res => {
+        var x = res.data;
+        console.log(ordenSolicitad.numeroPedido)
+        
+        
+        for (let i = 0; i < x.length; i++) {
+            if(x[i].nombre == ordenSolicitad.usuario){
+                var LatitudCliente = x[i].latitud;
+                var LongitudCliente = x[i].longitud;
+                iniciarMapa(LatitudCliente,LongitudCliente)
+                axios({
+                    url: 'http://localhost:3000/usuarios/' + x[i]._id + "/" + ordenSolicitad.numeroPedido + "/" + orden, 
+                    method: 'put',
+                    responseType: 'json',
+                    data: motoristaEntrega
+                    
+                }).then(res => {
+                    console.log(res.data)
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+            
+        }
+        
+    })
+    .catch( err => {
+
+    }).finally(
+        window.location.href = '../html/detallesTomada.html'
+    )
+}
