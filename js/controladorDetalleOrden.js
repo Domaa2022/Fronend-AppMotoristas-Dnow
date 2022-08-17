@@ -142,3 +142,4 @@ function OrdenTomada(){
         window.location.href = '../html/detallesTomada.html'
     )
 }
+

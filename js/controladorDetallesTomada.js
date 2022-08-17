@@ -81,3 +81,4 @@ function generarDetalle (){
 }
 
 generarDetalle();
+
