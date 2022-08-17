@@ -15,7 +15,7 @@ axios ({
     }
     for (let i = 0; i < x.ordenesPendientes.length; i++) {
         document.getElementById('ordenesPendientes').innerHTML += `
-        <input type="button" class="text3" value="Orden ${x.ordenesFinalizadas[i].numeroPedido}">`
+        <input type="button" class="text3" value="Orden ${x.ordenesPendientes[i].numeroPedido}">`
         
     }
 
