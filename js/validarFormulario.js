@@ -93,9 +93,8 @@ function Ingresar() {
 	}).then(res => {
 		(res.data).forEach( e => {
 			if (e.estado == "pendiente"){
-				alert("Esperando aceptacion de usuario")
+				alert("Usuario pendiente de ser aceptado")
 			}else{
-				alert("Estas registrado")
 				if(e.nombreMotorista == usuario && e.contraseña == contraseña){
 					window.location.href = 'html/inicio.html'
 					sessionStorage.setItem('motorista', JSON.stringify(e))
